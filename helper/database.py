@@ -13,7 +13,8 @@ class Database:
         return dict(
             _id=int(id),                                   
             file_id=None,
-            caption=None
+            caption=None,
+            dumb_id=None
         )
 
     async def add_user(self, b, m):
@@ -51,7 +52,13 @@ class Database:
     async def get_caption(self, id):
         user = await self.col.find_one({'_id': int(id)})
         return user.get('caption', None)
+    
+    async def get_dumb_id(self, id):
+        user = await self.col.find_one({'_id': int(id)})
+        return user.get('dumb_id', None)
 
+    async def set_dumb(self, id, dumb_id):
+        await self.col.update_one({'_id': int(id)}, {'$set': {'dumb_id': dumb_id}})
 
 db = Database(Config.DB_URL, Config.DB_NAME)
 

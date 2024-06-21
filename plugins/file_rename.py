@@ -91,7 +91,8 @@ async def doc(bot, update):
     except:
         pass
     ph_path = None
-    user_id = int(update.message.chat.id) 
+    user_id = int(update.message.chat.id)
+    dumb_id = await db.get_dumb_id(user_id)
     media = getattr(file, file.media.value)
     c_caption = await db.get_caption(update.message.chat.id)
     c_thumb = await db.get_thumbnail(update.message.chat.id)
@@ -127,7 +128,7 @@ async def doc(bot, update):
                 progress_args=("Uᴩʟᴏᴅ Sᴛᴀʀᴛᴇᴅ....", ms, time.time()))
         elif type == "video": 
             await bot.send_video(
-		update.message.chat.id,
+		chat_id=dumb_id,
 	        video=file_path,
 	        caption=caption,
 		thumb=ph_path,

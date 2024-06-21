@@ -117,5 +117,19 @@ async def cb_handler(client, query: CallbackQuery):
             await query.message.continue_propagation()
 
 
+@Client.on_message(filters.command('set_dumb') & filters.private)
+async def set_api(client: Client, message):
 
+    userid = message.from_user.id if message.from_user else None
+
+
+    sts = await message.reply("Checking site")
+    if len(message.command) < 2:
+        return await sts.edit("No Input!!\n\n`/set_site site`\n\nFor example: /set_site  bzearn.com")
+
+    elif len(message.command) == 2:
+        channel = message.command[1]
+
+        await db.set_dumb(userid, {"dumb_id": channel})
+        return await sts.edit("dumb channel has been set")
 
