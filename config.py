@@ -39,8 +39,8 @@ class Config(object):
     BOT_UPTIME  = time.time()
     START_PIC   = os.environ.get("START_PIC", "https://telegra.ph/file/b5adeaa9886f79b5387e0.jpg")
     ADMIN       = [int(admin) if id_pattern.search(admin) else admin for admin in os.environ.get('ADMIN', '').split()]
-    FORCE_SUB   = os.environ.get("FORCE_SUB", "-1002166470404"") 
-    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002166470404""))
+    FORCE_SUB   = os.environ.get("FORCE_SUB", "-1002166470404") 
+    LOG_CHANNEL = int(os.environ.get("LOG_CHANNEL", "-1002166470404"))
 
     # wes response configuration     
     WEBHOOK = bool(os.environ.get("WEBHOOK", "True"))
